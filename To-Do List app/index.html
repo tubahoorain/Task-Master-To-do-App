@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Task Master</h1>
+        </header>
+        <div class="introduction">
+            <p>Welcome to Task Master, your ultimate task management app! Easily create, save, and organize your daily tasks to boost productivity and stay on track.</p>
+        </div>
+        <main>
+            <div class="input-section">
+                <input type="text" id="task-input" placeholder="Add a new task...">
+                <button id="add-task-btn">Add Task</button>
+            </div>
+            <ul id="task-list">
+                <!-- Tasks will appear here dynamically -->
+            </ul>
+            <div class="controls">
+                <button id="save-tasks-btn">Save Tasks</button>
+                <button id="clear-tasks-btn">Clear All Tasks</button>
+                <p id="task-count">Tasks: 0</p>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2025 Task Master | Simplify Your Productivity</p>
+        </footer>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+        const taskCount = document.getElementById('task-count');
+        const clearTasksBtn = document.getElementById('clear-tasks-btn');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const saveTasksBtn = document.getElementById('save-tasks-btn');
+
+        function updateTaskCount() {
+            taskCount.textContent = `Tasks: ${taskList.children.length}`;
+        }
+
+        function saveTasksToLocalStorage() {
+            const tasks = [];
+            taskList.querySelectorAll('li').forEach(task => {
+                tasks.push(task.firstChild.textContent);
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            alert('Tasks saved successfully!');
+        }
+
+        function loadTasksFromLocalStorage() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(taskValue => {
+                createTaskElement(taskValue);
+            });
+            updateTaskCount();
+        }
+
+        function createTaskElement(taskValue) {
+            const listItem = document.createElement('li');
+            listItem.textContent = taskValue;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', function() {
+                taskList.removeChild(listItem);
+                updateTaskCount();
+            });
+
+            listItem.appendChild(deleteBtn);
+            taskList.appendChild(listItem);
+        }
+
+        function addTask() {
+            const taskValue = taskInput.value.trim();
+
+            if (taskValue) {
+                createTaskElement(taskValue);
+                taskInput.value = '';
+                updateTaskCount();
+            }
+        }
+
+        addTaskBtn.addEventListener('click', addTask);
+
+        taskInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        clearTasksBtn.addEventListener('click', function() {
+            taskList.innerHTML = '';
+            localStorage.removeItem('tasks'); // Clear tasks from local storage without showing save alert
+            updateTaskCount();
+        });
+
+        saveTasksBtn.addEventListener('click', saveTasksToLocalStorage);
+
+        // Load tasks on page load
+        loadTasksFromLocalStorage();
+    </script>
+</body>
+</html>

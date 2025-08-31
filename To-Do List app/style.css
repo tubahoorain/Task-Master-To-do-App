@@ -1,0 +1,122 @@
+ .app-container {
+            background: linear-gradient(135deg,  #1e88e5,  #1e88e5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            color: #fff;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .introduction {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #e0f2f1;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-section input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .input-section button {
+            padding: 15px;
+            background: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .input-section button:hover {
+            background: #e64a19;
+        }
+
+        #task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #task-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #64b5f6;
+            color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        #task-list li:hover {
+            transform: scale(1.02);
+        }
+
+        #task-list li button {
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        #task-list li button:hover {
+            background: #b71c1c;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .controls button {
+            flex: 1;
+            padding: 10px 20px;
+            background: #ff7043;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #1565c0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #c8e6c9;
+        }
